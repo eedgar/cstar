@@ -29,6 +29,8 @@ import cstar.output
 import cstar.signalhandler
 from cstar.exceptions import NoHostsSpecified
 
+import warnings                                                                                                          
+warnings.filterwarnings("ignore")   
 
 def fallback(*args):
     for arg in args:

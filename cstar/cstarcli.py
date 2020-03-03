@@ -32,7 +32,8 @@ from cstar.exceptions import BadArgument
 from cstar.exceptions import BadFileFormatVersion, FileTooOld
 from cstar.output import msg, error, emph
 
-
+import warnings                                                                                                          
+warnings.filterwarnings("ignore")   
 def fallback(*args):
     for arg in args:
         if arg is not None:
