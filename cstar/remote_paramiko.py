@@ -62,8 +62,12 @@ class RemoteParamiko(object):
                     pkey = paramiko.RSAKey.from_private_key_file(self.ssh_identity_file, None)
                 debug("Username : ", self.ssh_username)
                 debug("Id file: ", self.ssh_identity_file)
+                #agent = paramiko.Agent()
+                #agent_keys = agent.get_keys()
                 self.client.set_missing_host_key_policy(paramiko.client.AutoAddPolicy())
-                self.client.connect(self.hostname, compress=True, username=self.ssh_username, password=self.ssh_password, pkey=pkey)
+                self.client.connect(self.hostname, compress=True, allow_agent=True, username=self.ssh_username, password=self.ssh_password, pkey=pkey)
+                #s = self.client.get_transport().open_session()
+                #paramiko.agent.AgentRequestHandler(s)
             except:
                 self.client = None
                 raise BadSSHHost("Could not establish an SSH connection to host %s" % (self.hostname,))
